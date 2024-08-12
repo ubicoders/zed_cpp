@@ -7,10 +7,7 @@ ZEDCam::ZEDCam() {
     init_params.camera_resolution = sl::RESOLUTION::HD720;
     init_params.camera_fps = 60;
     init_params.depth_mode = sl::DEPTH_MODE::PERFORMANCE;
-    init_params.coordinate_units = sl::UNIT::MILLIMETER;
-
-    image_size = zed.getCameraInformation().camera_configuration.resolution;
-    sl_depth_map_gpu = sl::Mat(image_size.width, image_size.height, MAT_TYPE::U8_C4, sl::MEM::GPU); 
+    init_params.coordinate_units = sl::UNIT::MILLIMETER;    
 }
 
 ZEDCam::~ZEDCam() {
@@ -23,6 +20,8 @@ bool ZEDCam::openCam() {
         std::cerr << "Failed to open the ZED camera: " << sl::toString(err) << std::endl;
         return false;
     }
+    image_size = zed.getCameraInformation().camera_configuration.resolution;
+    sl_depth_map_gpu = sl::Mat(image_size.width, image_size.height, MAT_TYPE::U8_C4, sl::MEM::GPU); 
     return true;
 }
 

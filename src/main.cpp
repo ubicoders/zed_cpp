@@ -5,21 +5,16 @@
 #include "utils_zed.hpp"
 #include "zed_cam.hpp"
 #include "aruco_detection.hpp"
+
 using namespace sl;
-
-
 int main(int argc, char **argv) {
-    ZEDCam zed_cam; // true indicates that depth information is needed
-    
+    TimerTicTok timer;
     ArucoDetectorWrapper left_ar_detector;
     ArucoDetectorWrapper right_ar_detector;
 
-
-    if (!zed_cam.openCam()) {
-        return 1; // Quit if camera fails to open
-    }
-
-    TimerTicTok timer;
+    
+    ZEDCam zed_cam; // true indicates that depth information is needed
+    if (!zed_cam.openCam()) return 1;
     char key = ' ';
     while (key != 'q') {
 
