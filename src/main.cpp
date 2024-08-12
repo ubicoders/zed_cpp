@@ -40,13 +40,13 @@ int main(int argc, char **argv) {
         left_ar_detector.detectMarkers(left_image);
         right_ar_detector.detectMarkers(right_image);
         //arucoDetector.drawMarkers(left_image);
-        std::vector<std::pair<int, cv::Point2f>> left_marker_info = left_ar_detector.get_xy_info();
-        std::vector<std::pair<int, cv::Point2f>> right_marker_info = right_ar_detector.get_xy_info();
+        //std::vector<std::pair<int, cv::Point2f>> left_marker_info = left_ar_detector.get_xy_info();
+        //std::vector<std::pair<int, cv::Point2f>> right_marker_info = right_ar_detector.get_xy_info();
         //arucoDetector.print_xy_info(left_image);
         
         
         //cv::Mat depth_image_ocv = zed_cam.getDepthMapImage();
-        
+
         //if (!left_image.empty()) cv::imshow("Left Image", left_image);
         //if (!depth_image_ocv.empty()) cv::imshow("Depth Image", depth_image_ocv);
         
