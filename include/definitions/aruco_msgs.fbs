@@ -21,3 +21,4 @@ table StereoImageMarkers {
 }
 
 root_type StereoImageMarkers;
+file_identifier "ODET";

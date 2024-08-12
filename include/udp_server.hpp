@@ -15,6 +15,7 @@ public:
     bool initialize();
     std::string receiveMessage();                 // Method to receive a message
     void sendMessage(const std::string &message); // Method to send a message to all clients
+    void sendMessageFB(const char *data, size_t size);
 
 private:
     int sockfd;
@@ -74,7 +75,7 @@ std::string UDPServer::receiveMessage()
     if (n > 0)
     {
         buffer[n] = '\0';
-        std::cout << "Received: " << buffer << std::endl;
+        // std::cout << "Received: " << buffer << std::endl;
 
         // Check if this is a new client
         if (isNewClient(cliaddr))
@@ -94,9 +95,20 @@ void UDPServer::sendMessage(const std::string &message)
     {
         sendto(sockfd, message.c_str(), message.size(), MSG_CONFIRM, (const struct sockaddr *)&client, len);
     }
-    std::cout << "Sent Message to all clients: " << message << std::endl;
+    // std::cout << "Sent Message to all clients: " << message << std::endl;
 }
 
+void UDPServer::sendMessageFB(const char *data, size_t size)
+{
+    for (const auto &client : clients)
+    {
+        if (sendto(sockfd, data, size, 0, (const struct sockaddr *)&client, len) == -1)
+        {
+            std::cerr << "Failed to send FlatBuffer message to client: " << inet_ntoa(client.sin_addr) << std::endl;
+        }
+    }
+    // std::cout << "Sent FlatBuffer message to all clients" << std::endl;
+}
 bool UDPServer::isNewClient(struct sockaddr_in &client)
 {
     // Check if the client address is already in the list
