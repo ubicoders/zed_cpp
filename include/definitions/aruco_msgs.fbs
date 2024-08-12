@@ -1,0 +1,23 @@
+namespace ArUco;
+
+struct Point2D {
+  x: float;
+  y: float;
+}
+
+table Marker {
+  id: int;
+  corners: [Point2D];  // 4 corners for each marker
+}
+
+table ImageMarkers {
+  image_name: string;
+  markers: [Marker];
+}
+
+table StereoImageMarkers {
+  left_image: ImageMarkers;
+  right_image: ImageMarkers;
+}
+
+root_type StereoImageMarkers;
