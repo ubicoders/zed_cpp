@@ -49,6 +49,9 @@ int main(int argc, char **argv)
         // aruco detection
         left_ar_detector.detectMarkers(left_image);
         right_ar_detector.detectMarkers(right_image);
+        
+
+
         udp_server.receiveMessage();
         // udp_server.sendMessage("Hello from ZED camera123123123123123");
 
